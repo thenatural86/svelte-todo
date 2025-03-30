@@ -9,6 +9,14 @@
     { id: 3, text: 'Third', completed: true },
   ]
 
+  let totalTodos
+  let remainingTodos
+
+  $: totalTodos = todos.length
+  $: remainingTodos = todos.reduce((n, todo) => {
+    return n + (todo.completed ? 0 : 1)
+  }, 0)
+
   function onComplete(event) {
     let updateId = event.detail.id
     // console.log('Completing', updateId)
@@ -21,7 +29,7 @@
 </script>
 
 <div id="app-container" class="app-container">
-  <Header />
+  <Header {totalTodos} {remainingTodos} />
   <Todos {todos} on:completed={onComplete} />
   <Form />
 </div>
