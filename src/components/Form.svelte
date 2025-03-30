@@ -49,4 +49,8 @@
         .btn:focus {
             outline: none;
         }
+
+        ::placeholder {
+            opacity: 0.3;
+        }
         </style>
