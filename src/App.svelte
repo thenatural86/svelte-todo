@@ -3,6 +3,8 @@
   import Header from './components/Header.svelte'
   import Todos from './components/Todos.svelte'
 
+  let newText
+
   let todos = [
     { id: 1, text: 'First', completed: false },
     { id: 2, text: 'Second', completed: true },
@@ -26,12 +28,23 @@
     })
     todos = todos
   }
+
+  function createdTodo() {
+    console.log('created', newText)
+    newText = newText.trim()
+
+    if (newText != '') {
+      let newId = Math.max(...todos.map((e) => e.id)) + 1
+      todos = [...todos, { id: newId, text: newText, completed: false }]
+    }
+    newText = ''
+  }
 </script>
 
 <div id="app-container" class="app-container">
   <Header {totalTodos} {remainingTodos} />
   <Todos {todos} on:completed={onComplete} />
-  <Form />
+  <Form bind:newText on:created={createdTodo} />
 </div>
 
 <style>
