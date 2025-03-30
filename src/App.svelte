@@ -39,11 +39,18 @@
     }
     newText = ''
   }
+
+  function onDelete(event) {
+    let delId = event.detail.id
+    console.log('deleting', delId)
+
+    todos = todos.filter((todo) => todo.id !== delId)
+  }
 </script>
 
 <div id="app-container" class="app-container">
   <Header {totalTodos} {remainingTodos} />
-  <Todos {todos} on:completed={onComplete} />
+  <Todos {todos} on:completed={onComplete} on:deleted={onDelete} />
   <Form bind:newText on:created={createdTodo} />
 </div>
 
