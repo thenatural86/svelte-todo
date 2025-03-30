@@ -8,11 +8,21 @@
     { id: 2, text: 'Second', completed: true },
     { id: 3, text: 'Third', completed: true },
   ]
+
+  function onComplete(event) {
+    let updateId = event.detail.id
+    // console.log('Completing', updateId)
+
+    todos.map((todo) => {
+      if (todo.id === updateId) todo.completed = !todo.completed
+    })
+    todos = todos
+  }
 </script>
 
 <div id="app-container" class="app-container">
   <Header />
-  <Todos {todos} />
+  <Todos {todos} on:completed={onComplete} />
   <Form />
 </div>
 
