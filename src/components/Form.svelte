@@ -7,6 +7,11 @@
     console.log('Created')
     dispatch('created')
   }
+
+  function submitValue(event) {
+    // console.log(event.charCode)
+    if (event.charCode === 13) dispatch('created')
+  }
 </script>
 
 <!-- Add form at bottom -->
@@ -17,6 +22,7 @@
     type="text"
     class="input-text"
     name=""
+    on:keypress={submitValue}
   />
   <button class="btn fa-solid fa-plus" on:click={created}></button>
 </div>
