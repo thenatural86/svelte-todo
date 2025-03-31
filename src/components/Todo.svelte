@@ -1,5 +1,8 @@
 <script>
   import { createEventDispatcher } from 'svelte'
+
+  import { fly } from 'svelte/transition'
+
   export let itemText
   export let completed
   export let itemId
@@ -20,7 +23,10 @@
   }
 </script>
 
-<li class="todo-list list-item-view {completed ? 'completed' : ''}">
+<li
+  transition:fly={{ y: 200, duration: 1000 }}
+  class="todo-list list-item-view {completed ? 'completed' : ''}"
+>
   <span>
     <button
       class="btn btn-done fa-solid {completed
